@@ -1,0 +1,280 @@
+/* =========================================================
+   ALBA — ATELIER DI BELLEZZA
+   FILE: style.css — LAYOUT E STILE
+   ========================================================= */
+
+:root{
+  --ivory:#FAF6F0;
+  --ivory-deep:#F1EAE0;
+  --forest:#2F3B2C;
+  --forest-deep:#212A1F;
+  --sage:#8FA084;
+  --blush:#E3B8AE;
+  --blush-deep:#D89D91;
+  --gold:#B8925A;
+  --ink:#2B2622;
+  --line: rgba(43,38,34,0.14);
+}
+
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+
+body{
+  background:var(--ivory);
+  color:var(--ink);
+  font-family:'Jost', sans-serif;
+  font-weight:300;
+  line-height:1.6;
+  overflow-x:hidden;
+}
+
+h1,h2,h3,.display{
+  font-family:'Cormorant Garamond', serif;
+  font-weight:500;
+  letter-spacing:0.01em;
+  color:var(--forest-deep);
+}
+
+a{color:inherit; text-decoration:none;}
+
+.eyebrow{
+  font-family:'Jost', sans-serif;
+  text-transform:uppercase;
+  letter-spacing:0.28em;
+  font-size:0.72rem;
+  color:var(--gold);
+  font-weight:500;
+}
+
+.wrap{
+  max-width:1180px;
+  margin:0 auto;
+  padding:0 clamp(1.25rem, 4vw, 3rem);
+}
+
+/* ---------- NAV ---------- */
+header{
+  position:fixed;
+  top:0; left:0; right:0;
+  z-index:100;
+  background:rgba(250,246,240,0.86);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);
+  transition:box-shadow .3s ease;
+}
+header.scrolled{ box-shadow:0 6px 24px rgba(43,38,34,0.06); }
+
+nav{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:1.1rem clamp(1.25rem, 4vw, 3rem);
+  max-width:1180px;
+  margin:0 auto;
+}
+
+.logo{
+  font-family:'Cormorant Garamond', serif;
+  font-size:1.6rem;
+  letter-spacing:0.14em;
+  color:var(--forest-deep);
+  display:flex; align-items:center; gap:.5rem;
+}
+.logo svg{width:22px;height:22px;flex-shrink:0;}
+
+.nav-links{
+  display:flex;
+  gap:2.2rem;
+  font-size:0.92rem;
+  letter-spacing:0.02em;
+}
+.nav-links a{ position:relative; padding-bottom:4px; }
+.nav-links a::after{
+  content:'';
+  position:absolute;
+  left:0; bottom:0;
+  width:0; height:1px;
+  background:var(--gold);
+  transition:width .3s ease;
+}
+.nav-links a:hover::after{ width:100%; }
+
+.btn{
+  display:inline-flex;
+  align-items:center;
+  gap:.5rem;
+  background:var(--forest-deep);
+  color:var(--ivory);
+  padding:0.75rem 1.6rem;
+  border-radius:2px;
+  font-size:0.85rem;
+  letter-spacing:0.06em;
+  border:1px solid var(--forest-deep);
+  cursor:pointer;
+  transition:background .3s ease, color .3s ease, transform .2s ease;
+}
+.btn:hover{ background:transparent; color:var(--forest-deep); }
+.btn-outline{ background:transparent; color:var(--forest-deep); border:1px solid var(--forest-deep); }
+.btn-outline:hover{ background:var(--forest-deep); color:var(--ivory); }
+
+/* ---------- HERO ---------- */
+.hero{
+  position:relative;
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  padding-top:6rem;
+  overflow:hidden;
+}
+.hero-blob{
+  position:absolute;
+  right:-10%;
+  top:8%;
+  width:60%;
+  max-width:640px;
+  aspect-ratio:1/1;
+  z-index:0;
+  opacity:0.9;
+}
+.hero-content{ position:relative; z-index:2; max-width:640px; }
+.hero .eyebrow{ margin-bottom:1.2rem; display:block; }
+.hero h1{
+  font-size:clamp(2.6rem, 6vw, 4.4rem);
+  line-height:1.06;
+  font-style:italic;
+  font-weight:500;
+}
+.hero h1 em{ font-style:normal; color:var(--gold); }
+.hero p.lead{ margin-top:1.6rem; max-width:480px; font-size:1.05rem; color:rgba(43,38,34,0.78); }
+.hero-actions{ margin-top:2.4rem; display:flex; gap:1rem; flex-wrap:wrap; }
+.hero-stats{ margin-top:3.5rem; display:flex; gap:2.6rem; flex-wrap:wrap; }
+.hero-stats div{ border-left:1px solid var(--line); padding-left:1rem; }
+.hero-stats strong{ display:block; font-family:'Cormorant Garamond', serif; font-size:1.9rem; color:var(--forest-deep); }
+.hero-stats span{ font-size:0.78rem; color:rgba(43,38,34,0.6); letter-spacing:0.03em; }
+
+/* ---------- SECTION GENERIC ---------- */
+section{ padding:7rem 0; position:relative; }
+.section-head{ max-width:620px; margin-bottom:3.5rem; }
+.section-head h2{ font-size:clamp(2rem, 4vw, 2.8rem); margin-top:0.6rem; }
+.section-head p{ margin-top:1rem; color:rgba(43,38,34,0.7); font-size:1rem; max-width:520px; }
+
+.reveal{ opacity:0; transform:translateY(24px); transition:opacity .8s ease, transform .8s ease; }
+.reveal.in{ opacity:1; transform:translateY(0); }
+
+/* ---------- SERVIZI ---------- */
+.servizi-grid{
+  display:grid;
+  grid-template-columns:repeat(3, 1fr);
+  gap:1px;
+  background:var(--line);
+  border:1px solid var(--line);
+}
+.servizio{ background:var(--ivory); padding:2.6rem 2.2rem; transition:background .35s ease; }
+.servizio:hover{ background:var(--ivory-deep); }
+.servizio .num{ font-family:'Cormorant Garamond', serif; font-size:0.9rem; color:var(--gold); letter-spacing:0.1em; }
+.servizio h3{ font-size:1.5rem; margin-top:0.8rem; font-weight:500; }
+.servizio p{ margin-top:0.7rem; font-size:0.92rem; color:rgba(43,38,34,0.68); }
+.servizio .price{ margin-top:1.2rem; font-size:0.82rem; letter-spacing:0.04em; color:var(--forest-deep); font-weight:500; }
+
+/* ---------- RITUALE (elemento distintivo) ---------- */
+.rituale{ background:var(--forest-deep); color:var(--ivory); }
+.rituale .section-head p{ color:rgba(250,246,240,0.68); }
+.rituale .eyebrow{ color:var(--blush); }
+.rituale .section-head h2{ color:var(--ivory); }
+
+.ritual-path{ position:relative; display:grid; grid-template-columns:repeat(4, 1fr); gap:2rem; margin-top:1rem; }
+.ritual-path::before{
+  content:'';
+  position:absolute;
+  top:34px; left:6%; right:6%;
+  height:1px;
+  background:linear-gradient(90deg, transparent, var(--gold) 10%, var(--gold) 90%, transparent);
+}
+.ritual-step{ position:relative; }
+.ritual-step .dot{
+  width:68px; height:68px;
+  border-radius:50%;
+  background:var(--forest-deep);
+  border:1px solid var(--gold);
+  display:flex; align-items:center; justify-content:center;
+  margin-bottom:1.4rem;
+  position:relative;
+  z-index:2;
+}
+.ritual-step .dot svg{ width:28px; height:28px; stroke:var(--blush); }
+.ritual-step .step-label{ font-size:0.72rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--gold); }
+.ritual-step h3{ color:var(--ivory); font-size:1.35rem; margin-top:0.5rem; }
+.ritual-step p{ margin-top:0.6rem; font-size:0.88rem; color:rgba(250,246,240,0.62); }
+
+/* ---------- PREZZI ---------- */
+.prezzi-list{ border-top:1px solid var(--line); margin-top:1rem; }
+.prezzo-riga{ display:flex; justify-content:space-between; align-items:baseline; padding:1.35rem 0; border-bottom:1px solid var(--line); gap:2rem; }
+.prezzo-riga .nome{ font-size:1.1rem; font-family:'Cormorant Garamond', serif; font-weight:500;}
+.prezzo-riga .desc{ font-size:0.82rem; color:rgba(43,38,34,0.58); margin-top:0.2rem;}
+.prezzo-riga .valore{ font-family:'Cormorant Garamond', serif; font-size:1.3rem; color:var(--gold); white-space:nowrap; }
+.prezzi-cols{ display:grid; grid-template-columns:1fr 1fr; gap:0 4rem; }
+
+/* ---------- TESTIMONIANZE ---------- */
+.testi-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:2.4rem; }
+.testi{ background:var(--ivory-deep); padding:2.2rem; border-radius:2px; position:relative; }
+.testi .quote-mark{ font-family:'Cormorant Garamond', serif; font-size:3rem; color:var(--blush-deep); line-height:1; }
+.testi p.testo{ margin-top:0.6rem; font-size:0.95rem; color:rgba(43,38,34,0.75); font-style:italic;}
+.testi .autore{ margin-top:1.4rem; font-size:0.82rem; letter-spacing:0.04em; color:var(--forest-deep); font-weight:500; }
+
+/* ---------- PRENOTA / CONTATTI ---------- */
+.prenota{ background:var(--blush); }
+.prenota-grid{ display:grid; grid-template-columns:1.1fr 1fr; gap:4rem; align-items:start; }
+.prenota h2{ font-size:clamp(2rem,4vw,2.8rem); }
+.prenota p.lead{ margin-top:1rem; color:rgba(43,38,34,0.72); max-width:440px; }
+
+.info-riga{ display:flex; gap:1rem; padding:1rem 0; border-bottom:1px solid rgba(43,38,34,0.16); }
+.info-riga svg{ width:20px; height:20px; flex-shrink:0; margin-top:2px; stroke:var(--forest-deep); }
+.info-riga strong{ display:block; font-size:0.9rem; }
+.info-riga span{ font-size:0.85rem; color:rgba(43,38,34,0.65); }
+
+.form-card{ background:var(--ivory); padding:2.4rem; border-radius:2px; }
+.form-card label{
+  display:block; font-size:0.75rem; letter-spacing:0.08em; text-transform:uppercase;
+  color:var(--forest-deep); margin-bottom:0.4rem; margin-top:1.1rem;
+}
+.form-card label:first-child{ margin-top:0; }
+.form-card input, .form-card select, .form-card textarea{
+  width:100%; border:none; border-bottom:1px solid var(--line); background:transparent;
+  padding:0.6rem 0.1rem; font-family:'Jost', sans-serif; font-size:0.95rem; color:var(--ink);
+}
+.form-card input:focus, .form-card select:focus, .form-card textarea:focus{
+  outline:none; border-bottom-color:var(--gold);
+}
+.form-card textarea{ resize:none; height:70px; }
+.form-card .btn{ margin-top:1.6rem; width:100%; justify-content:center; }
+.form-note{ margin-top:0.9rem; font-size:0.75rem; color:rgba(43,38,34,0.5); }
+
+/* ---------- FOOTER ---------- */
+footer{ background:var(--forest-deep); color:rgba(250,246,240,0.72); padding:3.5rem 0 2rem; }
+.footer-grid{ display:grid; grid-template-columns:1.4fr 1fr 1fr; gap:2.5rem; padding-bottom:2.5rem; border-bottom:1px solid rgba(250,246,240,0.14); }
+footer .logo{ color:var(--ivory); }
+footer h4{ font-size:0.78rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--gold); margin-bottom:1rem; }
+footer ul{ list-style:none; }
+footer li{ margin-bottom:0.6rem; font-size:0.9rem; }
+footer li a:hover{ color:var(--blush); }
+.footer-bottom{ display:flex; justify-content:space-between; padding-top:1.6rem; font-size:0.78rem; color:rgba(250,246,240,0.45); flex-wrap:wrap; gap:0.6rem; }
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 880px){
+  .nav-links{ display:none; }
+  .servizi-grid{ grid-template-columns:1fr; }
+  .ritual-path{ grid-template-columns:1fr 1fr; row-gap:2.6rem; }
+  .ritual-path::before{ display:none; }
+  .testi-grid{ grid-template-columns:1fr; }
+  .prezzi-cols{ grid-template-columns:1fr; }
+  .prenota-grid{ grid-template-columns:1fr; }
+  .footer-grid{ grid-template-columns:1fr 1fr; }
+  .hero-blob{ opacity:0.5; }
+}
+
+@media (prefers-reduced-motion: reduce){
+  html{ scroll-behavior:auto; }
+  .reveal{ transition:none; opacity:1; transform:none; }
+}
+
+:focus-visible{ outline:2px solid var(--gold); outline-offset:2px; }
